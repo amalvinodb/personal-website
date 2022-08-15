@@ -60,10 +60,10 @@
       </nav><!-- .navbar -->
 
       <div class="social-links">
-        <a href="https://twitter.com/Amalvin54535076" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="https://www.facebook.com/natsu.av" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.instagram.com/_extream_bencher/" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/amal-vinod-5454511a0/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="https://twitter.com/Amalvin54535076" class="twitter" target="_blank"><i class="bi bi-twitter"></i></a>
+        <a href="https://www.facebook.com/natsu.av" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/_extream_bencher/" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/amal-vinod-5454511a0/" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
       </div>
 
     </div>
@@ -522,7 +522,7 @@
           <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
         </div>
         <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+          <textarea id="message" class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
         </div>
         <div class="my-3">
           <div class="loading">Loading</div>
@@ -555,8 +555,22 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
+    function  auth(){
+      
+      let name1 = document.getElementById("name").value;
+      let subjec1 = document.getElementById("subject").value;
+      let message1 = document.getElementById("message").value;
+      let checker = (isNaN(subjec1) && isNaN(name1) && isNaN(message1))
+      if(checker){
+        return 0;
+      }else{
+        return 10;
+      }
+    }
     $("#submit-form").submit((e)=>{
         e.preventDefault()
+        let rev = auth();
+        if(rev === 0){
         $.ajax({
             url:"https://script.google.com/macros/s/AKfycbyeesKj89m3M0aWCyI0ZRvBnIj31GU8KskEfxV5TR3wQVRUZZ4n7iT72dFxDkVPynlstA/exec",
             data:$("#submit-form").serialize(),
@@ -570,6 +584,9 @@
 
             }
         })
+      }else{
+        alert("incurret info")
+      }
     })
 </script>
 
